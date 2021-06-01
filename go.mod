@@ -1,6 +1,6 @@
 module github.com/guillermocattaneo/cursog
 
-go 1.13
+go 1.16
 
 require(
 )

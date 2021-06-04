@@ -24,5 +24,10 @@ func ModificarPerfil(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if !status {
+		http.Error(w, "No se ha logrado modificar el archivo ", 400)
+		return
+	}
+
 	w.WriteHeader(http.StatusCreated)
 }

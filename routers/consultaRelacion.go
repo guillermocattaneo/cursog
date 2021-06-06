@@ -17,7 +17,7 @@ func ConsultaRelacion(w http.ResponseWriter, r *http.Request) {
 
 	var resp models.RespuestaConsultaRelacion
 	status, err := bd.ConsultoRelacion(t)
-	if err != nil || !status {
+	if err != nil || status == false {
 		resp.Status = false
 	} else {
 		resp.Status = true

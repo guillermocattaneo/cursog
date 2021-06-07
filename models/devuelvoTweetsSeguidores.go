@@ -9,8 +9,8 @@ import (
 /*DevuelvoTweetsSeguidores es la estructura para devolver los tweets*/
 type DevuelvoTweetsSeguidores struct {
 	ID                primitive.ObjectID `bson:"_id" json:"_id,omitempty"`
-	UsuarioID         string             `bson:"usuarioIDid" json:"usuarioIDid,omitempty"`
-	UsuarioRelacionID string             `bson:"usuarioRelacionID" json:"usuarioRelacionID,omitempty"`
+	UsuarioID         string             `bson:"usuarioid" json:"userId,omitempty"`
+	UsuarioRelacionID string             `bson:"usuarioRelacionid" json:"userRelationId,omitempty"`
 	Tweet             struct {
 		Mensaje string    `bson:"mensaje" json:"mensaje,omitempty"`
 		Fecha   time.Time `bson:"fecha" json:"fecha,omitempty"`

@@ -2,5 +2,5 @@ package models
 
 type Relacion struct {
 	UsuarioID         string `bson:"usuarioid" json:"usuarioID"`
-	UsuarioRelacionID string `bson:"usuariorelacionID" json:"usuarioRelacionID"`
+	UsuarioRelacionID string `bson:"usuariorelacionid" json:"usuarioRelacionID"`
 }

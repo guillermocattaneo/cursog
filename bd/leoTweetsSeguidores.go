@@ -18,7 +18,7 @@ func LeoTweetsSeguidores(ID string, pagina int) ([]models.DevuelvoTweetsSeguidor
 
 	skip := (pagina - 1) * 20
 	condiciones := make([]bson.M, 0)
-	condiciones = append(condiciones, bson.M{"$match": bson.M{"usuarioid": ID}})
+	condiciones = append(condiciones, bson.M{"$match": bson.M{"usuarioID": ID}})
 	condiciones = append(condiciones, bson.M{
 		"$lookup": bson.M{
 			"from":         "tweet",

@@ -26,8 +26,7 @@ func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
 	}
 
 	tk = strings.TrimSpace(splitToken[1])
-	//tkn, err := jwt.ParseWithClaims(tk, claims, func(token *jwt.Token) (interface{}, error) {
-	_, err := jwt.ParseWithClaims(tk, claims, func(token *jwt.Token) (interface{}, error) {
+	tkn, err := jwt.ParseWithClaims(tk, claims, func(token *jwt.Token) (interface{}, error) {
 		return miClave, nil
 	})
 
@@ -41,10 +40,9 @@ func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
 		return claims, encontrado, IDUsuario, nil
 	}
 
-	//token invalido, ver si este rompe el banner y avatar
-	//if !tkn.Valid {
-	//	return claims, false, string(""), errors.New("token invalido")
-	//}
+	if !tkn.Valid {
+		return claims, false, string(""), errors.New("token invalido")
+	}
 
 	return claims, false, string(""), err
 }

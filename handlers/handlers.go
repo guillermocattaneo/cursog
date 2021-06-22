@@ -20,8 +20,7 @@ func Manejadores() {
 	router.HandleFunc("/sesion", middlew.ChequeoBD(routers.Login)).Methods("POST")
 	//router.HandleFunc("/login", middlew.ChequeoBD(routers.Login)).Methods("POST")
 
-	router.HandleFunc("/perfil", middlew.ChequeoBD(routers.VerPerfil)).Methods("GET")
-	//router.HandleFunc("/perfil", middlew.ChequeoBD(middlew.ValidoJWT(routers.VerPerfil))).Methods("GET")
+	router.HandleFunc("/perfil", middlew.ChequeoBD(middlew.ValidoJWT(routers.VerPerfil))).Methods("GET")
 	//router.HandleFunc("/verperfil", middlew.ChequeoBD(middlew.ValidoJWT(routers.VerPerfil))).Methods("GET")
 	router.HandleFunc("/perfil", middlew.ChequeoBD(middlew.ValidoJWT(routers.ModificarPerfil))).Methods("PUT")
 	//router.HandleFunc("/modificarPerfil", middlew.ChequeoBD(middlew.ValidoJWT(routers.ModificarPerfil))).Methods("PUT")

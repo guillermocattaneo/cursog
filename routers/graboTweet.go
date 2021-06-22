@@ -21,12 +21,10 @@ func GraboTweet(w http.ResponseWriter, r *http.Request) {
 	}
 	_, status, err := bd.InsertoTweet(registro)
 	if err != nil {
-		//http.Error(w, "Ocurrio un error al intentar insertar el registro, reintente nuevamente "+err.Error(), 400)
 		http.Error(w, "Ocurrio un error al intentar insertar el registro, reintente nuevamente "+err.Error(), http.StatusBadRequest)
 		return
 	}
 	if !status {
-		//http.Error(w, "No se ha logrado insertar el Tweet ", 400)
 		http.Error(w, "No se ha logrado insertar el Tweet ", http.StatusBadRequest)
 		return
 	}

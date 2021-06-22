@@ -17,11 +17,14 @@ func VerPerfil(w http.ResponseWriter, r *http.Request) {
 	}
 	perfil, err := bd.BuscoPerfil(ID)
 	if err != nil {
-		http.Error(w, "Ocurrio un error al intentar buscar el registro "+err.Error(), 400)
+		//http.Error(w, "Ocurrio un error al intentar buscar el registro "+err.Error(), 400)
+		http.Error(w, "Ocurrio un error al intentar buscar el registro "+err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	w.Header().Set("context-type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	//w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
+
 	json.NewEncoder(w).Encode(perfil)
 }

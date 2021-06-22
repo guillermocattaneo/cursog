@@ -18,13 +18,15 @@ func ObtenerBanner(w http.ResponseWriter, r *http.Request) {
 
 	perfil, err := bd.BuscoPerfil(ID)
 	if err != nil {
-		http.Error(w, "Usuario no encontrado", http.StatusBadRequest)
+		//http.Error(w, "Usuario no encontrado", http.StatusBadRequest)
+		http.Error(w, "Usuario no encontrado", http.StatusNotFound)
 		return
 	}
 
 	OpenFile, err := os.Open("uploads/banners/" + perfil.Banner)
 	if err != nil {
-		http.Error(w, "Imagen no encontrada", http.StatusBadRequest)
+		//http.Error(w, "Imagen no encontrada", http.StatusBadRequest)
+		http.Error(w, "Imagen no encontrada", http.StatusNotFound)
 		return
 	}
 

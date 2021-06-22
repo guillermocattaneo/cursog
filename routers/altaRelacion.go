@@ -21,13 +21,16 @@ func AltaRelacion(w http.ResponseWriter, r *http.Request) {
 
 	status, err := bd.InsertoRelacion(t)
 	if err != nil {
-		http.Error(w, "Ocurrio un error al intentar insertar la relacion. "+err.Error(), http.StatusBadRequest)
+		//http.Error(w, "Ocurrio un error al intentar insertar la relacion. "+err.Error(), http.StatusBadRequest)
+		http.Error(w, "Ocurrio un error al intentar seguir. "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 	if !status {
-		http.Error(w, "No se ha logrado insertar la relacion. ", http.StatusBadRequest)
+		//http.Error(w, "No se ha logrado insertar la relacion. ", http.StatusBadRequest)
+		http.Error(w, "No se ha logrado seguir. ", http.StatusInternalServerError) //500
 		return
 	}
 
+	//Como lo tomo como una creacion de relacion entre usuarios, lo "creamos" y no mandamos un simple 200
 	w.WriteHeader(http.StatusCreated)
 }

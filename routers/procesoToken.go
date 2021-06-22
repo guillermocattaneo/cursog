@@ -17,7 +17,7 @@ var IDUsuario string
 
 /*ProcesoToken para extraer sus valores*/
 func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
-	miClave := []byte("MastersdelDesarrollo_grupodeFacebook")
+	miClave := []byte("MastersdelDesarrollo_grupodeFacebook") //dejo de donde lo aprendi
 	claims := &models.Claim{}
 
 	splitToken := strings.Split(tk, "Bearer")
@@ -26,7 +26,8 @@ func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
 	}
 
 	tk = strings.TrimSpace(splitToken[1])
-	tkn, err := jwt.ParseWithClaims(tk, claims, func(token *jwt.Token) (interface{}, error) {
+	//tkn, err := jwt.ParseWithClaims(tk, claims, func(token *jwt.Token) (interface{}, error) {
+	_, err := jwt.ParseWithClaims(tk, claims, func(token *jwt.Token) (interface{}, error) {
 		return miClave, nil
 	})
 
@@ -40,8 +41,10 @@ func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
 		return claims, encontrado, IDUsuario, nil
 	}
 
-	if !tkn.Valid {
-		return claims, false, string(""), errors.New("token invalido")
-	}
+	//token invalido, ver si este rompe el banner y avatar
+	//if !tkn.Valid {
+	//	return claims, false, string(""), errors.New("token invalido")
+	//}
+
 	return claims, false, string(""), err
 }

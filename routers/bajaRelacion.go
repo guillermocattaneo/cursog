@@ -16,13 +16,16 @@ func BajaRelacion(w http.ResponseWriter, r *http.Request) {
 
 	status, err := bd.BorroRelacion(t)
 	if err != nil {
-		http.Error(w, "Ocurrio un error al intentar borrar la relacion. "+err.Error(), http.StatusBadRequest)
+		//		http.Error(w, "Ocurrio un error al intentar borrar la relacion. "+err.Error(), http.StatusBadRequest)
+		http.Error(w, "Ocurrio un error al dejar de seguir. "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 	if !status {
-		http.Error(w, "No se ha logrado borrar la relacion. ", http.StatusBadRequest)
+		//http.Error(w, "No se ha logrado borrar la relacion. ", http.StatusBadRequest)
+		http.Error(w, "No se ha logrado dejar de seguir. "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.WriteHeader(http.StatusCreated)
+	//w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 }

@@ -34,7 +34,8 @@ func SubirAvatar(w http.ResponseWriter, r *http.Request) {
 	usuario.Avatar = IDUsuario + "." + extension
 	status, err = bd.ModificoRegistro(usuario, IDUsuario)
 	if err != nil || !status {
-		http.Error(w, "Error al grabar el avatar en la BdD! "+err.Error(), http.StatusBadRequest)
+		//http.Error(w, "Error al grabar el avatar en la BdD! "+err.Error(), http.StatusBadRequest)
+		http.Error(w, "Error al grabar el avatar en la BdD! "+err.Error(), http.StatusGatewayTimeout)
 		return
 	}
 

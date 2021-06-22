@@ -12,19 +12,22 @@ import (
 func ObtenerAvatar(w http.ResponseWriter, r *http.Request) {
 	ID := r.URL.Query().Get("id")
 	if len(ID) < 1 {
+		//http.Error(w, "Debe enviar el parametro ID", http.StatusBadRequest)
 		http.Error(w, "Debe enviar el parametro ID", http.StatusBadRequest)
 		return
 	}
 
 	perfil, err := bd.BuscoPerfil(ID)
 	if err != nil {
-		http.Error(w, "Usuario no encontrado", http.StatusBadRequest)
+		//http.Error(w, "Usuario no encontrado", http.StatusBadRequest)
+		http.Error(w, "Usuario no encontrado", http.StatusNotFound)
 		return
 	}
 
 	OpenFile, err := os.Open("uploads/avatars/" + perfil.Avatar)
 	if err != nil {
-		http.Error(w, "Imagen no encontrada", http.StatusBadRequest)
+		//http.Error(w, "Imagen no encontrada", http.StatusBadRequest)
+		http.Error(w, "Imagen no encontrada", http.StatusNotFound)
 		return
 	}
 

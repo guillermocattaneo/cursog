@@ -10,7 +10,8 @@ import (
 func EliminarTweet(w http.ResponseWriter, r *http.Request) {
 	ID := r.URL.Query().Get("id")
 	if len(ID) < 1 {
-		http.Error(w, "Debe enviar el parametro ID", http.StatusBadRequest)
+		//http.Error(w, "Debe enviar el parametro ID", http.StatusBadRequest)
+		http.Error(w, "Debe enviar el parametro ID", http.StatusNotFound) //404 porque no encuentra el tweet a borrar
 		return
 	}
 
@@ -22,5 +23,6 @@ func EliminarTweet(w http.ResponseWriter, r *http.Request) {
 
 	//esto para recordar al momento de depurar
 	w.Header().Set("Content-type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	//w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 }

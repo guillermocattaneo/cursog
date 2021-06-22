@@ -17,32 +17,38 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewDecoder(r.Body).Decode(&t)
 	if err != nil {
-		http.Error(w, "Usuario y/o Contraseña invalidos"+err.Error(), 400)
+		//http.Error(w, "Usuario y/o Contraseña invalidos"+err.Error(), 400)
+		http.Error(w, "Usuario y/o Contraseña invalidos"+err.Error(), http.StatusBadRequest)
 		return
 	}
 	if len(t.Email) == 0 {
-		http.Error(w, "El email del usuario es requerido"+err.Error(), 400)
+		//http.Error(w, "El email del usuario es requerido"+err.Error(), 400)
+		http.Error(w, "El email del usuario es requerido"+err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	documento, existe := bd.IntentoLogin(t.Email, t.Password)
 	if !existe {
-		http.Error(w, "Usuario y/o Contraseña invalidos", 400)
+		//http.Error(w, "Usuario y/o Contraseña invalidos", 400)
+		http.Error(w, "Usuario y/o Contraseña invalidos", http.StatusBadRequest)
 		return
 	}
 
 	jwtKey, err := jwt.GeneroJWT(documento)
 	if err != nil {
-		http.Error(w, "Ocurrio un error al intentar generar el token correspondiente"+err.Error(), 400)
+		//http.Error(w, "Ocurrio un error al intentar generar el token correspondiente"+err.Error(), 400)
+		http.Error(w, "Ocurrio un error al intentar generar el token correspondiente"+err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	resp := models.RespuestaLogin{
 		Token: jwtKey,
+		//Token: jwtKey,
 	}
 
 	w.Header().Set("Content-Type", "aplication/json")
-	w.WriteHeader(http.StatusCreated)
+	//w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(resp)
 
 	expirationTime := time.Now().Add(24 * time.Hour)

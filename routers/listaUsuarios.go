@@ -25,12 +25,14 @@ func ListaUsuarios(w http.ResponseWriter, r *http.Request) {
 	result, status := bd.LeoUsuariosTodos(IDUsuario, pag, search, typeUser)
 
 	if !status {
-		http.Error(w, "Error al leer los usuarios", http.StatusBadRequest)
+		//http.Error(w, "Error al leer los usuarios", http.StatusBadRequest)
+		http.Error(w, "Error al leer los usuarios", http.StatusNotFound) //404 porque ALGO no se encontro
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	//w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(result)
 
 }

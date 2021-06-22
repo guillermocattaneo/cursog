@@ -21,7 +21,7 @@ func Manejadores() {
 	//router.HandleFunc("/login", middlew.ChequeoBD(routers.Login)).Methods("POST")
 
 	router.HandleFunc("/perfil", middlew.ChequeoBD(middlew.ValidoJWT(routers.VerPerfil))).Methods("GET")
-	//router.HandleFunc("/verperfil", middlew.ChequeoBD(middlew.ValidoJWT(routers.VerPerfil))).Methods("GET")
+	//	router.HandleFunc("/verperfil", middlew.ChequeoBD(middlew.ValidoJWT(routers.VerPerfil))).Methods("GET")
 	router.HandleFunc("/perfil", middlew.ChequeoBD(middlew.ValidoJWT(routers.ModificarPerfil))).Methods("PUT")
 	//router.HandleFunc("/modificarPerfil", middlew.ChequeoBD(middlew.ValidoJWT(routers.ModificarPerfil))).Methods("PUT")
 
@@ -50,7 +50,8 @@ func Manejadores() {
 
 	router.HandleFunc("/usuarios", middlew.ChequeoBD(routers.ListaUsuarios)).Methods("GET")
 	//router.HandleFunc("/listaUsuarios", middlew.ChequeoBD(middlew.ValidoJWT(routers.ListaUsuarios))).Methods("GET")
-	router.HandleFunc("/feeds", middlew.ChequeoBD(middlew.ValidoJWT(routers.LeoTweetsSeguidores))).Methods("GET")
+	router.HandleFunc("/feeds", middlew.ChequeoBD(routers.LeoTweetsSeguidores)).Methods("GET")
+	//router.HandleFunc("/feeds", middlew.ChequeoBD(middlew.ValidoJWT(routers.LeoTweetsSeguidores))).Methods("GET")
 	//router.HandleFunc("/leoTweetsSeguidores", middlew.ChequeoBD(middlew.ValidoJWT(routers.LeoTweetsSeguidores))).Methods("GET")
 
 	PORT := os.Getenv("PORT")

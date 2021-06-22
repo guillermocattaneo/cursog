@@ -29,6 +29,7 @@ func GraboTweet(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusCreated) //Se deja el Creado porque se CREA el mensaje como registro.
+	//w.WriteHeader(http.StatusCreated) //Se deja el Creado porque se CREA el mensaje como registro.
+	w.WriteHeader(http.StatusOK) //Se deja el Creado porque se CREA el mensaje como registro.
 
 }

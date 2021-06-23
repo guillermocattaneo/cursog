@@ -21,8 +21,8 @@ func LeoUsuariosTodos(ID string, page int64, search string, tipo string) ([]*mod
 	var results []*models.Usuario
 
 	findOptions := options.Find()
-	findOptions.SetSkip((page - 1) * 20)
-	findOptions.SetLimit(20)
+	findOptions.SetSkip((page - 1) * 10)
+	findOptions.SetLimit(10)
 
 	query := bson.M{
 		"nombre": bson.M{"$regex": `(?i)` + search},

@@ -33,5 +33,5 @@ func AltaRelacion(w http.ResponseWriter, r *http.Request) {
 
 	//Como lo tomo como una creacion de relacion entre usuarios, lo "creamos" y no mandamos un simple 200
 	w.WriteHeader(http.StatusOK)
-	w.WriteHeader(http.StatusCreated)
+	//w.WriteHeader(http.StatusCreated)
 }
